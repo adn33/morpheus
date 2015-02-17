@@ -5,7 +5,7 @@ public class Player : MonoBehaviour {
 	
 	public Vector3 moveDestination;
 
-	public float moveSpeed = 10.0f;
+	public float moveSpeed = 1.0f;
 	
 	void Awake () {
 

@@ -4,16 +4,25 @@ using System.Collections.Generic;
 
 public class GameManager : MonoBehaviour {
 	public static GameManager instance;
-	
+
+	public GameObject DreamDoorPrefab;
+	public GameObject MonsterDoorPrefab;
 	public GameObject TilePrefab;
 	public GameObject UserPlayerPrefab;
 	public GameObject AIPlayerPrefab;
+
+	public int five = 0;
+
+
 	public bool Moveable = false;
 	
 	public int mapSize = 0;
-	
+	private int doorSize = 6;
+
 	List <List<Tile>> map = new List<List<Tile>>();
 	List <Player> players = new List<Player>();
+	List <DreamDoor> dreamdoors = new List<DreamDoor>();
+    List <MonsterDoor> monsterdoors = new List<MonsterDoor>();
 	int currentPlayerIndex = 0;
 	
 	void Awake() {
@@ -24,6 +33,7 @@ public class GameManager : MonoBehaviour {
 	void Start () {		
 		generateMap();
 		generatePlayers();
+		generateDoor ();
 	}
 	
 	// Update is called once per frame
@@ -63,13 +73,37 @@ public class GameManager : MonoBehaviour {
 			map.Add(row);
 		   }
 		}
+
+	void generateDoor() {
+
+		DreamDoor dreamdoor;
+		
+		dreamdoor = ((GameObject)Instantiate(DreamDoorPrefab, new Vector3(5 - Mathf.Floor(doorSize/2),1f, -0 + Mathf.Floor(doorSize/2)), Quaternion.Euler(new Vector3()))).GetComponent<DreamDoor>();
+		
+		dreamdoors.Add(dreamdoor);
+
+		MonsterDoor monsterdoor;
+		
+		monsterdoor = ((GameObject)Instantiate(MonsterDoorPrefab, new Vector3(2 - Mathf.Floor(doorSize/2),1f, -6 + Mathf.Floor(doorSize/2)), Quaternion.Euler(new Vector3()))).GetComponent<MonsterDoor>();
+		
+		monsterdoors.Add(monsterdoor);
+
+
+	}
+
+
 	
 	void generatePlayers() {
 		UserPlayer player;
+
 		
-		player = ((GameObject)Instantiate(UserPlayerPrefab, new Vector3(0 - Mathf.Floor(mapSize/2),1.5f, -0 + Mathf.Floor(mapSize/2)), Quaternion.Euler(new Vector3()))).GetComponent<UserPlayer>();
+		player = ((GameObject)Instantiate(UserPlayerPrefab, new Vector3(0 - Mathf.Floor(mapSize/1),1f, -0 + Mathf.Floor(mapSize/2)), Quaternion.Euler(new Vector3()))).GetComponent<UserPlayer>();
 		
 		players.Add(player);
+
+
+
+
 
 	}
 }

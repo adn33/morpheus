@@ -47,7 +47,11 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\scripts\AIPlayer.cs" />
+     <Compile Include="Assets\scripts\Destroy.cs" />
+     <Compile Include="Assets\scripts\Door.cs" />
+     <Compile Include="Assets\scripts\DreamDoor.cs" />
      <Compile Include="Assets\scripts\GameManager.cs" />
+     <Compile Include="Assets\scripts\MonsterDoor.cs" />
      <Compile Include="Assets\scripts\Player.cs" />
      <Compile Include="Assets\scripts\Reference.cs" />
      <Compile Include="Assets\scripts\Tile.cs" />
@@ -57,10 +61,10 @@
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/GUISystem/4.6.1/UnityEngine.UI.dll</HintPath>
  </Reference>
  <Reference Include="DLLUtil">
- <HintPath>/Users/Teslim/Downloads/Build_one/Assets/DLLUtil.dll</HintPath>
+ <HintPath>/Users/Teslim/morpheus/Build_one/Assets/DLLUtil.dll</HintPath>
  </Reference>
  <Reference Include="Grids">
- <HintPath>/Users/Teslim/Downloads/Build_one/Assets/Grids.dll</HintPath>
+ <HintPath>/Users/Teslim/morpheus/Build_one/Assets/Grids.dll</HintPath>
  </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

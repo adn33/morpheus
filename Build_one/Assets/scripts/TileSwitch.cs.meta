@@ -2,7 +2,10 @@ fileFormatVersion: 2
 guid: f50856e0923714075a2004871b6670cc
 MonoImporter:
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - up_Tex: {fileID: 2800000, guid: dbdd740a28fad4addb1f0608bf736788, type: 3}
+  - left_Tex: {fileID: 2800000, guid: 60ff7ff3eb2244d12a8f7141fe2cfbbc, type: 3}
+  - right_Tex: {fileID: 2800000, guid: 9392a993341394e489c7325fbdedc05c, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

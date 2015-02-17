@@ -6,13 +6,17 @@ public class TileSwitch : MonoBehaviour {
 
 	public enum TileDirection{Up, Down, Left, Right};
     public TileDirection currentDirection;
-	
-	Texture2D tex = Resources.Load("forward_tex.jpg") as Texture2D;
 
-			
+	
+	public Texture up_Tex;
+	public Texture left_Tex;
+	public Texture right_Tex;
+	public Texture down_Tex;
+
 
 	// Use this for initialization
 	void Start () {
+
 
 	}
 	void Update(){
@@ -26,32 +30,33 @@ public class TileSwitch : MonoBehaviour {
 	// Update is called once per frame
 	void UpdateCurrentDirection () {
 	
-		bool isValid = true;
+		//bool isValid = true;
 
-		do {
+		//do {
 	   
 						switch (currentDirection) {
-			
+
 						case(TileDirection.Up):
-				        transform.renderer.material.mainTexture = tex;
+							
+								renderer.material.SetTexture("_MainTex",up_Tex);
 								currentDirection ++;
 								break;
 						case(TileDirection.Down):
-								transform.renderer.material.color = Color.green;
+								renderer.material.SetTexture("_MainTex",down_Tex);
 								currentDirection ++;
 								break;
 
 						case(TileDirection.Left):
-								transform.renderer.material.color = Color.cyan;
+								renderer.material.SetTexture("_MainTex",left_Tex);
 								currentDirection ++;
 								break;
 						case(TileDirection.Right):
-								transform.renderer.material.color = Color.magenta;
+								renderer.material.SetTexture("_MainTex",right_Tex);
 								currentDirection ++;
 				                currentDirection = 0;
 								break;
 						}
-				} while(isValid != true);
+				//} while(isValid = true);
 				
 		}
 		
