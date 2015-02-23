@@ -1,18 +1,21 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/scripts/GameManager.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/scripts/Monster_Player.cs">
     <Files>
       <File FileName="Assets/scripts/DreamDoor.cs" Line="4" Column="30" />
-      <File FileName="Assets/scripts/GameManager.cs" Line="104" Column="3" />
-      <File FileName="Assets/scripts/Player.cs" Line="1" Column="1" />
+      <File FileName="Assets/scripts/GameManager.cs" Line="116" Column="3" />
+      <File FileName="Assets/scripts/Player.cs" Line="30" Column="1" />
       <File FileName="Assets/scripts/UserPlayer.cs" Line="1" Column="1" />
       <File FileName="Assets/scripts/Reference.cs" Line="1" Column="1" />
-      <File FileName="Assets/scripts/AIPlayer.cs" Line="26" Column="11" />
+      <File FileName="Assets/scripts/AIPlayer.cs" Line="33" Column="1" />
       <File FileName="../../Downloads/Build_one/Assets/scripts/UserPlayer.cs" Line="1" Column="1" />
       <File FileName="../../Downloads/Build_one/Assets/scripts/Tile.cs" Line="1" Column="1" />
       <File FileName="Assets/scripts/TileSwitch.cs" Line="1" Column="1" />
-      <File FileName="Assets/scripts/MonsterDoor.cs" Line="4" Column="32" />
+      <File FileName="Assets/scripts/MonsterDoor.cs" Line="1" Column="1" />
       <File FileName="Assets/scripts/Door.cs" Line="1" Column="1" />
+      <File FileName="Assets/scripts/Destroy.cs" Line="1" Column="1" />
+      <File FileName="Assets/scripts/Monster_Player.cs" Line="22" Column="4" />
+      <File FileName="Assets/scripts/Dream_Player.cs" Line="4" Column="20" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

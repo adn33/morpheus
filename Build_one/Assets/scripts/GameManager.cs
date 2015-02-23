@@ -5,6 +5,8 @@ using System.Collections.Generic;
 public class GameManager : MonoBehaviour {
 	public static GameManager instance;
 
+	public GameObject DreamPrefab;
+	public GameObject MonsterPrefab;
 	public GameObject DreamDoorPrefab;
 	public GameObject MonsterDoorPrefab;
 	public GameObject TilePrefab;
@@ -23,6 +25,9 @@ public class GameManager : MonoBehaviour {
 	List <Player> players = new List<Player>();
 	List <DreamDoor> dreamdoors = new List<DreamDoor>();
     List <MonsterDoor> monsterdoors = new List<MonsterDoor>();
+
+	//List <Dream_Player> dreams = new List<Dream_Player>();
+	//List <Monster_Player> monsters = new List<Monster_Player>();
 	int currentPlayerIndex = 0;
 	
 	void Awake() {
@@ -40,6 +45,7 @@ public class GameManager : MonoBehaviour {
 	void Update () {
 		
 		players[currentPlayerIndex].TurnUpdate();
+
 	}
 	
 	public void nextTurn() {
@@ -94,13 +100,25 @@ public class GameManager : MonoBehaviour {
 
 	
 	void generatePlayers() {
-		UserPlayer player;
+		//UserPlayer player;
 
-		
-		player = ((GameObject)Instantiate(UserPlayerPrefab, new Vector3(0 - Mathf.Floor(mapSize/1),1f, -0 + Mathf.Floor(mapSize/2)), Quaternion.Euler(new Vector3()))).GetComponent<UserPlayer>();
-		
-		players.Add(player);
+		Dream_Player dream;
 
+		Monster_Player monster;
+		
+		//player = ((GameObject)Instantiate(UserPlayerPrefab, new Vector3(0 - Mathf.Floor(mapSize/1),1f, -0 + Mathf.Floor(mapSize/2)), Quaternion.Euler(new Vector3()))).GetComponent<UserPlayer>();
+		
+		//players.Add(player);
+
+
+
+		dream = ((GameObject)Instantiate(DreamPrefab, new Vector3(0 - Mathf.Floor(mapSize/1),1f, -0 + Mathf.Floor(mapSize/2)), Quaternion.Euler(new Vector3()))).GetComponent<Dream_Player>();
+		
+		players.Add(dream);
+
+		monster = ((GameObject)Instantiate(MonsterPrefab, new Vector3(0 - Mathf.Floor(mapSize/1),1f, -1 + Mathf.Floor(mapSize/2)), Quaternion.Euler(new Vector3()))).GetComponent<Monster_Player>();
+		
+		players.Add(monster);
 
 
 
