@@ -13,11 +13,7 @@ public class GameManager : MonoBehaviour {
 	public GameObject UserPlayerPrefab;
 	public GameObject AIPlayerPrefab;
 
-	public int five = 0;
-
-
-	public bool Moveable = false;
-	
+	private int noOfEmpties = 7;
 	public int mapSize = 0;
 	private int doorSize = 6;
 
@@ -37,15 +33,14 @@ public class GameManager : MonoBehaviour {
 	// Use this for initialization
 	void Start () {		
 		generateMap();
-		generatePlayers();
 		generateDoor ();
+		repositionDoors ();
+		// generatePlayers();
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		
-		players[currentPlayerIndex].TurnUpdate();
-
+//		players[currentPlayerIndex].TurnUpdate();
 	}
 	
 	public void nextTurn() {
@@ -59,10 +54,7 @@ public class GameManager : MonoBehaviour {
 
 
 	public void moveCurrentPlayer(Tile destTile) {
-				
-
 		   players [currentPlayerIndex].moveDestination = destTile.transform.position + 1.5f * Vector3.up;
-				
 		}
 
 
@@ -72,33 +64,55 @@ public class GameManager : MonoBehaviour {
 		for (int i = 0; i < mapSize; i++) {
 			List <Tile> row = new List<Tile>();
 			for (int j = 0; j < mapSize; j++) {
-				Tile tile = ((GameObject)Instantiate(TilePrefab, new Vector3(i - Mathf.Floor(mapSize/2),0, -j + Mathf.Floor(mapSize/2)), Quaternion.Euler(new Vector3()))).GetComponent<Tile>();
+				Tile tile = ((GameObject)Instantiate(TilePrefab)).GetComponent<Tile>();
+				tile.transform.position = new Vector3(i - Mathf.Floor(mapSize/2),0, -j + Mathf.Floor(mapSize/2));
 				tile.gridPosition = new Vector2(i, j);
 				row.Add (tile);
+				assignTileDir(tile);
 			}
 			map.Add(row);
 		   }
 		}
 
-	void generateDoor() {
-
-		DreamDoor dreamdoor;
-		
-		dreamdoor = ((GameObject)Instantiate(DreamDoorPrefab, new Vector3(5 - Mathf.Floor(doorSize/2),1f, -0 + Mathf.Floor(doorSize/2)), Quaternion.Euler(new Vector3()))).GetComponent<DreamDoor>();
-		
-		dreamdoors.Add(dreamdoor);
-
-		MonsterDoor monsterdoor;
-		
-		monsterdoor = ((GameObject)Instantiate(MonsterDoorPrefab, new Vector3(2 - Mathf.Floor(doorSize/2),1f, -6 + Mathf.Floor(doorSize/2)), Quaternion.Euler(new Vector3()))).GetComponent<MonsterDoor>();
-		
-		monsterdoors.Add(monsterdoor);
-
-
+	void assignTileDir(Tile tile) {
+		// TODO: method for generating the map or a pre-made map
+		Tile.TileDirection dir;
+		// TODO: check if it's a corner tile and do not use empties for those
+		bool corner = false;
+		if (noOfEmpties > 0 && ! corner) {
+			int dirInt = Random.Range (0, 10);
+			if (dirInt > 4) {
+				dirInt = 4;
+			}
+			dir = (Tile.TileDirection) dirInt;
+			if (dir == Tile.TileDirection.Empty) {
+				noOfEmpties--;
+			}
+		} else {
+			dir = (Tile.TileDirection)Random.Range (0, 3);
+		}
+		tile.currentDirection = dir;
 	}
 
+	void generateDoor() {
+		DreamDoor dreamdoor;
+		dreamdoor = ((GameObject)Instantiate(DreamDoorPrefab)).GetComponent<DreamDoor>();
+		dreamdoors.Add(dreamdoor);
+		MonsterDoor monsterdoor;		
+		monsterdoor = ((GameObject)Instantiate(MonsterDoorPrefab)).GetComponent<MonsterDoor>();
+		monsterdoors.Add(monsterdoor);
+	}
 
-	
+	void repositionDoors()
+	{
+		foreach (Door door in dreamdoors) { // X = 4
+			door.nextToTile = map[4][Random.Range (0,4)];
+		}
+		foreach (Door door in monsterdoors) { // Y = 0
+			door.nextToTile = map[Random.Range (0,4)][0];
+		}
+	}
+
 	void generatePlayers() {
 		//UserPlayer player;
 
@@ -112,16 +126,14 @@ public class GameManager : MonoBehaviour {
 
 
 
-		dream = ((GameObject)Instantiate(DreamPrefab, new Vector3(0 - Mathf.Floor(mapSize/1),1f, -0 + Mathf.Floor(mapSize/2)), Quaternion.Euler(new Vector3()))).GetComponent<Dream_Player>();
-		
+		dream = ((GameObject)Instantiate(DreamPrefab)).GetComponent<Dream_Player>();
 		players.Add(dream);
-
 		monster = ((GameObject)Instantiate(MonsterPrefab, new Vector3(0 - Mathf.Floor(mapSize/1),1f, -1 + Mathf.Floor(mapSize/2)), Quaternion.Euler(new Vector3()))).GetComponent<Monster_Player>();
-		
 		players.Add(monster);
-
-
-
-
+		dream = ((GameObject)Instantiate(DreamPrefab, new Vector3(0 - Mathf.Floor(mapSize/1),1f, -3 + Mathf.Floor(mapSize/2)), Quaternion.Euler(new Vector3()))).GetComponent<Dream_Player>();
+		players.Add(dream);
+		monster = ((GameObject)Instantiate(MonsterPrefab, new Vector3(0 - Mathf.Floor(mapSize/1),1f, -2 + Mathf.Floor(mapSize/2)), Quaternion.Euler(new Vector3()))).GetComponent<Monster_Player>();
+		players.Add(monster);
+		//positionPlayers (players);
 	}
 }

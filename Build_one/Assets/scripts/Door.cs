@@ -1,41 +1,63 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Door : Tile {
-
-
-
-
-		
-		//public Vector2 gridPosition = Vector2.zero;
-		
-		// Use this for initialization
-		void Start () {
-			
+public class Door : MonoBehaviour
+{
+	private Tile tile;
+	public Tile nextToTile
+	{
+		get { return tile; }
+		set {
+			tile = value;
+			reposition();
 		}
-		
-		// Update is called once per frame
-		void Update () {
+	}
+
+	virtual public Vector3 getOffset() {
+		return Vector3.zero;
+	}
+
+	public void reposition()
+	{
+		Debug.Log ("Position before: " + this.transform.position);
+		transform.parent = tile.transform;
+		transform.localPosition = getOffset(); 
+		Debug.Log ("Position after: " + this.transform.position);
+	}
+
+//	dreamdoor = ((GameObject)Instantiate(DreamDoorPrefab, new Vector3(2 - Mathf.Floor(doorSize/2),1f, -6 + Mathf.Floor(doorSize/2)), Quaternion.Euler(new Vector3()))).GetComponent<DreamDoor>();
+//	monsterdoor = ((GameObject)Instantiate(MonsterDoorPrefab, new Vector3(5 - Mathf.Floor(doorSize/2),1f, -6 + Mathf.Floor(doorSize/2)), Quaternion.Euler(new Vector3()))).GetComponent<MonsterDoor>();
+
+	// Use this for initialization
+	void Start ()
+	{
 			
-		}
+	}
 		
-		void OnMouseEnter() {
+	// Update is called once per frame
+	void Update ()
+	{
+			
+	}
+		
+	void OnMouseEnter ()
+	{
 		transform.renderer.material.color = Color.blue;
 		
 		
 	}
 	
-	void OnMouseExit() {
+	void OnMouseExit ()
+	{
 		transform.renderer.material.color = Color.white;
 	}
-	
- 
 		
-		void OnMouseDown() {
+	void OnMouseDown ()
+	{
 			
-			GameManager.instance.moveCurrentPlayer(this);
-		}
-		
+		//GameManager.instance.moveCurrentPlayer (this);
 	}
+		
+}
 
 

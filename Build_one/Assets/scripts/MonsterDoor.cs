@@ -1,7 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class MonsterDoor : Tile {
+public class MonsterDoor : Door {
+
+	override public Vector3 getOffset() {
+		return new Vector3 (0, 1, 1);
+	}
 
 	// Use this for initialization
 	void Start () {
